@@ -1,0 +1,49 @@
+/* ... (previous CSS code) ... */
+
+/* Header Styles */
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Vertically center */
+    align-items: center; /* Horizontally center */
+    height: 50vh; /* Makes the header take up the full viewport height */
+}
+
+.header-buttons {
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0px 5px 10px rgba(179, 12, 12, 0.2);
+    padding: 1rem 0; /* Adjust the padding as needed */
+}
+
+.header-button {
+    margin: 0 1rem; /* Adjust the spacing between buttons as needed */
+    font-size: 1.8rem; /* Increase font size for larger buttons */
+    padding: 1rem 2rem; /* Increase padding for larger buttons */
+    background-color: #3498db; /* Background color for buttons */
+    color: #fff; /* Text color for buttons */
+    border: none;
+    border-radius: 0.5rem; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+
+}
+
+.header-button:hover {
+    background-color: #2980b9; /* Hover background color */
+}
+
+
+
+/* Style for the "Follow" and "Message" buttons */
+.profile-action-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px; /* Adjust the font size as needed */
+    margin-right: 10px; /* Add spacing between the buttons */
+}

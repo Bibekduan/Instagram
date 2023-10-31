@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Details</title>
+    <link rel="stylesheet" href="{% static 'styles1.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="post">
+            <div class="post-header">
+                <h1>Post Details</h1>
+                <a href="{% url 'index' %}" class="back-link">Back to Feed</a>
+            </div>
+            <div class="post-content">
+                <img src="{{ post.picture.url }}" alt="Post Content" class="post-image">
+                <div class="post-caption">{{ post.caption }}</div>
+                <div class="post-info"><small>
+                    <div class="post-date">Posted on {{ post.posted }}</div>
+                    <div class="post-likes">Likes: {{ post.like }}</div></small>
+                </div>
+                <div class="post-tags"> {% for tag in post.tag.all %}<a style="text-decoration: none;" href="{{tag.get_absolute_url}}">Tags: {{ tag }}</a>{% endfor %}</div>
+            </div>
+        </div>
+        <div class="comment-section">
+            <h2>Comments</h2>
+        
+            <!-- Display existing comments here -->
+            <div id="comments-container">
+                {% for comment in comments %}
+                <div class="comment">
+                    <div class="comment-info">
+                        <p><strong>{{ comment.user.username }}</strong> - {{ comment.date|date:"d-m-y" }}</p>
+                    </div>
+                    <div class="comment-body">
+                        {{ comment.body }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        
+            <!-- Comment Form -->
+            <form method="POST" class="comment-form" id="comment-form">
+                {% csrf_token %}
+                {{form.body.label_tag }}
+                {{ form.body }}
+                <button type="submit" id="add-comment-button">Post</button>
+            </form>
+        </div>
+        
+        
+    </div>
+</body>
+</html>
+{% endblock content %}

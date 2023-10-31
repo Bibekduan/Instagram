@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'styleprof.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'prof.css' %}">
+
+</head>
+<body>
+<header>
+    <div class="container">
+        <!-- Navigation Box -->
+       
+        <div class="profile">
+            <div class="profile-image">
+                <img src="{{profile.image.url}}" alt="" style="width: 188px; height: 200px;">
+            </div>
+            <div class="profile-user-settings">
+                <h1 class="profile-user-name">{{profile.first_name|title}}{{profile.last_name|title}}</h1>
+                {% if profile.user != request.user %}
+                <!-- Add the "Follow" and "Message" buttons here -->
+                {% if follow_status != True%}
+                <a href="{% url 'follow' profile.user 1 %}" class="btn profile-action-btn">Follow</a>
+                {% else %}
+                <a  href="{% url 'follow' profile.user 0 %}" class="btn profile-action-btn">Unfollow</a>
+                {% endif %}
+                <a href="{% url 'new-message' profile.user %}" class="btn profile-action-btn">Message</a>
+                {% else %}
+                <a href="{% url 'editprofile' %}" class="btn profile-edit-btn" style="text-decoration:none">Edit Profile</a>
+                <a href="{% url 'sign-out' %}" class="btn profile-edit-btn" style="text-decoration:none">Logout</a>
+
+                {% endif %}
+                <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
+            </div>
+            <div class="profile-stats">
+                <ul>
+                    <li><span class="profile-stat-count">{{post_count}}</span> posts</li>
+                    <li><span class="profile-stat-count">{{Followers_count}}</span> followers</li>
+                    <li><span class="profile-stat-count">{{following_count}}</span> following</li>
+                </ul>
+            </div>
+            <div class="profile-bio">
+                <p><span class="profile-real-name">{{profile.first_name|title}}{{profile.last_name|title}}</span> 📷✈️🏕️:{{profile.bio}} , <small>{{profile.location}}</small>:<a href="{{profile.url}}">{{profile.url}}</a></p>
+            </div>
+        </div>
+        <!-- End of profile section -->
+    </div>
+     <!-- End of container -->
+    <div class="navigation-box">
+        <button class="btn navigation-button" data-target="post">POST</button>
+        <a href="{% url 'favourite' username=profile.user.username %}">
+        <button class="btn navigation-button" data-target="save">SAVE</button>
+        </a>
+    </div> 
+</header>
+
+<main>
+    <div class="container">
+    
+        <!-- Post Section -->
+        <div class="section" id="post-section">
+            <div class="gallery">
+                {% for post in posts %}
+                <div class="gallery-item" tabindex="0">
+                    <img src="{{ post.picture.url }}" class="gallery-image" alt="">
+                    <div class="gallery-item-info">
+                        <ul>
+                            <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> {{post.like}}</li>
+                            <li class="gallery-item-comments"><span class="visually-hidden">Caption:</span><i class="fas fa-comment" aria-hidden="true"></i> {{post.caption}}</li>
+                        </ul>
+                    </div>
+                </div>
+                {% empty %}
+                <p>No posts yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- End of Post Section -->
+
+        <!-- Saved Post Section -->
+        <div class="section" id="save-section">
+            <!-- Add content for saved posts here -->
+            {% if saved_posts %}
+            <ul>
+                {% for post in saved_posts %}
+                    <li>
+                        <img src="{{ post.picture.url }}" alt="">
+                        <p>{{ post.caption }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% comment %} {% else %}
+            <p>No saved posts yet.</p> {% endcomment %}
+        {% endif %}
+        </div>
+        <!-- End of Saved Post Section -->
+
+    </div>
+    <!-- End of container -->
+</main>
+<script src="" async defer></script>
+
+
+
+ <script>
+    // JavaScript to handle navigation between sections
+    const navigationButtons = document.querySelectorAll(".navigation-button");
+    const sections = document.querySelectorAll(".section");
+
+    navigationButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const target = button.getAttribute("data-target");
+            sections.forEach(section => {
+                section.style.display = "none";
+            });
+            document.getElementById(`${target}-section`).style.display = "block";
+        });
+    });
+</script> 
+</body>
+</html>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

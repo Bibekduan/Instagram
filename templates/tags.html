@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+{% block content %}
+ {% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picture Gallery</title>
+    <style>
+        /* Basic CSS styles for demonstration */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .navigation a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            padding: 5px 10px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .navigation a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .picture-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .picture-item {
+            width: calc(50% - 10px); /* Two columns with some spacing */
+            margin-bottom: 20px;
+        }
+        .picture-img {
+            max-width: 100%;
+            height: 470px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+        .picture-caption {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .picture-caption p {
+            font-size: 14px;
+            color: #777;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .tag-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* Adjust the space between tags */
+        }
+        .tag-list li {
+            margin: 0;
+        }
+        .tag-link {
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Posts related to {{ tag.title }}</h1>
+        </header>
+        <div class="navigation">
+            <a href="{% url 'index' %}">Back to Feed</a>
+            <!-- You can add more navigation links if needed -->
+        </div>
+        
+        <!-- Picture Row -->
+        <div class="picture-row">
+            <!-- Repeat the following code block for each picture -->
+            {% for post in posts %}
+            <div class="picture-item">
+                <img class="picture-img" src="{{ post.picture.url }}" alt="{{ post.caption }}">
+                <div class="picture-caption">
+                    <p>{{ post.caption }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <footer>
+            <p>Suggested tags:</p>
+            <ul class="tag-list">
+                {% for t in tags %}
+                <li>
+                    <a class="tag-link" href="{% url 'tags' t.slug %}">#{{ t.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </footer>
+    </div>
+</body>
+</html> {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picture Gallery</title>
+    <style>
+        /* Basic CSS styles for demonstration */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 0px; /* Increase margin-top to move header down */
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .navigation a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            padding: 5px 10px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .navigation a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .picture-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .picture-item {
+            width: calc(50% - 10px); /* Two columns with some spacing */
+            margin-bottom: 20px;
+        }
+        .picture-img {
+            max-width: 100%;
+            height: 90%;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+        .picture-caption {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .picture-caption p {
+            font-size: 14px;
+            color: #777;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px; /* Increase margin-top to adjust footer height */
+        }
+        .tag-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0; /* Increase margin to separate "Suggested tags:" and tags */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* Adjust the space between tags */
+        }
+        .tag-list li {
+            margin: 0;
+        }
+        .tag-link {
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 style="margin-top: 45px;">Posts related to {{ tag.title }}</h1> <!-- Adjust margin-bottom for h1 -->
+        </header>
+        
+        <div class="navigation">
+            <a href="{% url 'index' %}">Back to Feed</a>
+            <!-- You can add more navigation links if needed -->
+        </div>
+        
+        <!-- Picture Row -->
+        <div class="picture-row">
+            <!-- Repeat the following code block for each picture -->
+            {% for post in posts %}
+            <div class="picture-item">
+                <img class="picture-img" src="{{ post.picture.url }}" alt="{{ post.caption }}">
+                <div class="picture-caption">
+                    <p>{{ post.caption }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <footer>
+           <h2><p style="margin-bottom: 10px;">Suggested tags:</p></h2> <!-- Adjust margin-bottom for the "Suggested tags:" -->
+            <ul class="tag-list">
+                {% for t in tags %}
+                <li>
+                    <a class="tag-link" href="{% url 'tags' t.slug %}">#{{ t.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>
+{% endblock content %}

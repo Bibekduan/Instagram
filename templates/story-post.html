@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Story</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'style/story.css' %}">
+    </head>
+    <body>
+       
+    
+    <form method="post" enctype="multipart/form-data" class="story-upload-form">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.image.label_tag }}
+            {{ form.image }}
+        </div>
+        <div class="form-group">
+            {{ form.caption.label_tag }}
+            {{ form.caption }}
+        </div>
+        <button type="submit" class="btn btn-primary">Upload Story</button>
+    </form>
+  
+        
+    <script src="{% static 'js/script.js' %}" async defer></script>
+</body>
+</html>
+

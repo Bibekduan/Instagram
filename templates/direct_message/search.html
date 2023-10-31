@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Search</title>
+    <link rel="stylesheet" href="{% static 'style/search.css' %}">
+</head>
+<body>
+    <header>
+        <h1>User Search</h1>
+    </header>
+    <main>
+        <div class="search-container">
+        <form action="" method="GET">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search users..." name="q" value="{{ request.GET.q }}">
+                <button id="search-button" type="submit">Search</button>
+            </div>
+        </form>
+        {% for user in users %}
+            <div class="user-suggestions">
+                <div class="user-info">
+                <a href="{% url 'profile' user.username %}" class="user">
+                    <img src="{{user.profile.image.url}}" alt="User 1">
+                    <span class="username" style="text-decoration:none">{{user.profile.first_name|title }}{{user.profile.last_name|title}}</span>
+                </a>
+            </div>
+                {% comment %} <div class="user">
+                    <img src="user2.jpg" alt="User 2">
+                    <span class="username">UserTwo</span>
+                </div>
+                <div class="user">
+                    <img src="user3.jpg" alt="User 3">
+                    <span class="username">UserThree</span>
+                </div> {% endcomment %}
+                <!-- Add more user suggestions here -->
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,102 @@
+styles.css
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+    margin: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.post {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.post-header {
+    background-color: #3897f0;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-header h1 {
+    margin: 0;
+}
+
+.back-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.post-content {
+    padding: 20px;
+}
+
+.post-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.post-caption {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.post-tags {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+}
+
+/* comment part */
+/* Add this CSS to your styles1.css or a separate CSS file */
+.comment-section {
+    margin-top: 20px;
+}
+
+.comment {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.comment-info {
+    font-size: 14px;
+    color: #666;
+}
+
+.comment-body {
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.comment-form {
+    margin-top: 20px;
+}
+
+#add-comment-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#add-comment-button:hover {
+    background-color: #0056b3;
+}

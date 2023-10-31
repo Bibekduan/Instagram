@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Create a New Post</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="picture">Upload a Picture</label>
+                <input type="file" name="picture" id="picture" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="caption">Caption</label>
+                <textarea name="caption" id="caption" rows="4" placeholder="Write a caption..." required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="tag">Tags (comma-separated)</label>
+                <input type="text" name="tag" id="tag" placeholder="e.g., summer, beach, friends" required>
+            </div>
+            <button type="submit" name="submit" value="Create Post">Create Post</button>
+        </form>
+    </div>
+</body>
+{% endblock content %}
+
+
+
+
+
+{% comment %} <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name="submit" value="Create Post">Create Post</button>
+</form> {% endcomment %}
