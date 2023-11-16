@@ -1,35 +1,105 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ user.username }}'s Stories</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'style/view_user_stories.css' %}">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <a href="{% url 'index' %}" class="back-button">Back to Home</a>
-            <h1>{{ user.username }}'s Stories</h1>
-        </header>
+<div class="story">
+	{% load static %} 
+    <!DOCTYPE html>
+    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+    <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+    <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+    <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title>Story</title>
+            <meta name="description" content="">
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <style>
+                /* Add CSS for the close button */
+                .close-button {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    padding: 5px 10px;
+                    background-color: #fff;
+                    border: 1px solid #ccc;
+                    border-radius: 50%;
+                    text-decoration: none;
+                }
+            </style>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet"  href="{% static 'style/storynew.css' %}">
+        </head>
+        <body>
+            <a href="{% url 'index' %}" class="close-button">X</a>
+            <div class="storiesOverlay">
+                <div class="storiesWrapper">
+                  <div class="storiesNab">
+                    <span onclick="preStory()" id="preStory"></span>
+                    <span onclick="nextStory()" id="nextStory"></span>
+                    <span id="progressBar">
+                      <div class="eachSlide active"></div>
+                      <div class="eachSlide"></div>
+                      <div class="eachSlide"></div>
+                      <div class="eachSlide"></div>
+                    </span>
+                  </div>
+                  <div class="storiesContainer">
+                    {% for story in user_stories %}
+                    <div class="eachStory active" style="background-image: url('https://ucnnews.live/uploads/front_end_news_content/compress1739670554405444.webp');">
+                        <img src="{{ story.image.url }}" alt="{{ story.caption }}">
 
-        <div class="story-feed">
-            {% for story in user_stories %}
-                <div class="story">
-                    <div class="story__picture">
-                        <img src="{{ story.image.url }}" alt="{{ story.caption }}" />
+                        <div class="storyMetaData">
+                            <h3>{{story.caption}}</h3>
+                            <div>
+                              <span>{{story.created_at}}</span>
+                              <ion-icon onclick="storyNavigateShare()" name="share-social-outline"></ion-icon>
+                            </div>
+                          </div>
                     </div>
-                    <span class="story__user">{{ user.username }}</span>
-                    <p class="story__caption">{{ story.caption }}</p>
+                    
+                    <!-- Add more stories here -->
+                    {% endfor  %}
                 </div>
-            {% endfor %}
-        </div>
-    </div>
-
-    <script src="" async defer></script>
-</body>
-</html>
-
+                
+              
+                    <div class="eachStory" style="background-image: url('https://hands-on-coffee.co.uk/wp-content/uploads/2018/01/nathan-dumlao-363125-1.jpg') ;">
+                      <img src="https://hands-on-coffee.co.uk/wp-content/uploads/2018/01/nathan-dumlao-363125-1.jpg" alt="">
+                      <div class="storyMetaData">
+                        <h3>Landscape Oriented Image</h3>
+                        <div>
+                          <span>Source: Google - 27 July 12:02PM</span>
+                          <ion-icon onclick="storyNavigateShare()" name="share-social-outline"></ion-icon>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="eachStory" style="background-image: url('https://mixkit.imgix.net/videos/preview/mixkit-winter-fashion-cold-looking-woman-concept-video-39874-0.jpg') ;">
+                      <video src="https://assets.mixkit.co/videos/preview/mixkit-winter-fashion-cold-looking-woman-concept-video-39874-large.mp4" __idm_id__="1310723"></video>
+              
+                      <div class="storyMetaData">
+                        <h3>Full Screen Video</h3>
+                        <div>
+                          <span>Source: Google - 27 July 12:02PM</span>
+                          <ion-icon onclick="storyNavigateShare()" name="share-social-outline"></ion-icon>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="eachStory" style="background-image: url('https://hands-on-coffee.co.uk/wp-content/uploads/2018/01/nathan-dumlao-363125-1.jpg') ;">
+                      <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" __idm_id__="1310723"></video>
+                      <!-- <img src="https://www.iclarified.com/images/news/86246/417032/417032.jpg" alt="Img 2">-->
+                      <div class="storyMetaData">
+                        <h3>Landscape Oriented Video</h3>
+                        <div>
+                          <span>Source: Google - 27 July 12:02PM</span>
+                          <ion-icon onclick="storyNavigateShare()" name="share-social-outline"></ion-icon>
+                        </div>
+                      </div>
+                    </div>
+              
+                  </div>
+                </div>
+              </div>
+            
+            <script src="{% static 'js/storyview.js' %}" async defer></script>
+        </body>
+    </html>
+    
+   

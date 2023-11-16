@@ -1,0 +1,276 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ user.username }}'s Stories</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'style/view_user_stories.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="{% url 'index' %}" class="back-button">Back to Home</a>
+            <h1>{{ user.username }}'s Stories</h1>
+        </header>
+
+        <div class="story-feed">
+            {% for story in user_stories %}
+                <div class="story">
+                    <div class="story__picture">
+                        <img src="{{ story.image.url }}" alt="{{ story.caption }}" />
+                    </div>
+                    <span class="story__user">{{ user.username }}</span>
+                    <p class="story__caption">{{ story.caption }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="" async defer></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style/storynew.css' %}" />
+  </head>
+  <body>
+    <div class="stories-container">
+        <!-- <div class="content">
+          <img src="images/1-thumb.png" alt="" />
+        </div>
+  
+        <div class="content">
+          <img src="images/2-thumb.png" alt="" />
+        </div>
+  
+        <div class="content">
+          <img src="images/3-thumb.png" alt="" />
+        </div>
+  
+        <div class="content">
+          <img src="images/4-thumb.png" alt="" />
+        </div>
+  
+        <div class="content">
+          <img src="images/5-thumb.png" alt="" />
+        </div>
+  
+        <div class="content">
+          <img src="images/6-thumb.png" alt="" />
+        </div>
+  
+        <div class="content">
+          <img src="images/7-thumb.png" alt="" />
+        </div>
+  
+        <div class="content">
+          <img src="images/8-thumb.png" alt="" />
+        </div> -->
+      </div>
+  
+      <div class="story-full">
+        <div class="content">
+          <div class="close-btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="#fff"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
+  
+          <div class="left-arrow">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="#fff"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </div>
+  
+          <img src="images/1.png" alt="" />
+  
+          <div class="right-arrow">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="#fff"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </div>
+  
+          <div class="title">Test Title</div>
+        </div>
+      </div>
+  
+      <script src="{% static 'js/storyview.js' %}"></script>
+  </body>
+</html>
+
+
+
+
+
+<div class="storiesOverlay">
+    <div class="storiesWrapper">
+      <div class="storiesNab">
+        <span onclick="preStory()" id="preStory"></span>
+        <span onclick="nextStory()" id="nextStory"></span>
+        <span id="progressBar">
+          <div class="eachSlide active"></div>
+          <div class="eachSlide"></div>
+          <div class="eachSlide"></div>
+          <div class="eachSlide"></div>
+        </span>
+      </div>
+      <div class="storiesContainer">
+        <div class="eachStory active" style="background-image: url('https://ucnnews.live/uploads/front_end_news_content/compress1739670554405444.webp') ;">
+          <img src="https://lh3.googleusercontent.com/pw/AM-JKLV-k3_D29YpRF2UMv3ProFuZieWwCfTkelEfR9lajJv6JQQybWY_CgwvMfaWDZgruIhhwm0Lv6s_cMlyAfDaMBpBvtQztS-6szLEDYUuGQoOnnndLcvbCFWO_ae7NVScBrSWyYoMXevFltarjBlBWHQ=w279-h603-no" alt="Img 3">
+          <div class="storyMetaData">
+            <h3>Full Screen Image</h3>
+            <div>
+              <span>Source: Google - 27 July 12:02PM</span>
+              <ion-icon onclick="storyNavigateShare()" name="share-social-outline"></ion-icon>
+            </div>
+          </div>
+        </div>
+  
+        <div class="eachStory" style="background-image: url('https://hands-on-coffee.co.uk/wp-content/uploads/2018/01/nathan-dumlao-363125-1.jpg') ;">
+          <img src="https://hands-on-coffee.co.uk/wp-content/uploads/2018/01/nathan-dumlao-363125-1.jpg" alt="">
+          <div class="storyMetaData">
+            <h3>Landscape Oriented Image</h3>
+            <div>
+              <span>Source: Google - 27 July 12:02PM</span>
+              <ion-icon onclick="storyNavigateShare()" name="share-social-outline"></ion-icon>
+            </div>
+          </div>
+        </div>
+        <div class="eachStory" style="background-image: url('https://mixkit.imgix.net/videos/preview/mixkit-winter-fashion-cold-looking-woman-concept-video-39874-0.jpg') ;">
+          <video src="https://assets.mixkit.co/videos/preview/mixkit-winter-fashion-cold-looking-woman-concept-video-39874-large.mp4" __idm_id__="1310723"></video>
+  
+          <div class="storyMetaData">
+            <h3>Full Screen Video</h3>
+            <div>
+              <span>Source: Google - 27 July 12:02PM</span>
+              <ion-icon onclick="storyNavigateShare()" name="share-social-outline"></ion-icon>
+            </div>
+          </div>
+        </div>
+        <div class="eachStory" style="background-image: url('https://hands-on-coffee.co.uk/wp-content/uploads/2018/01/nathan-dumlao-363125-1.jpg') ;">
+          <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" __idm_id__="1310723"></video>
+          <!-- <img src="https://www.iclarified.com/images/news/86246/417032/417032.jpg" alt="Img 2">-->
+          <div class="storyMetaData">
+            <h3>Landscape Oriented Video</h3>
+            <div>
+              <span>Source: Google - 27 July 12:02PM</span>
+              <ion-icon onclick="storyNavigateShare()" name="share-social-outline"></ion-icon>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+
+
+
+  {% for story in stories %}
+
+			<a href="{% url 'view_user_stories' story.user.username %}" class="story story--has-story">
+			  <div class="story__avatar">
+				<div class="story__border">
+				  <svg
+					width="64"
+					height="64"
+					xmlns="http://www.w3.org/2000/svg"
+				  >
+					<circle r="31" cy="32" cx="32" />
+				  </svg>
+				</div>
+				<div class="story__picture">
+				  <img src="{{story.0.image.url}}" alt="{{tory.0.caption}}" />
+				</div>
+			  </div>
+			  <span class="story__user">{{story.0.user.username}}</span>
+			</a>
+			{% endfor %}
+
+
+
+
+
+      const preStory = () => {
+        const activeElement = $(".eachStory.active").index();
+        if (activeElement !== 0) {
+          changeStory(activeElement - 1);
+        }
+      };
+      
+      const nextStory = () => {
+        const activeElement = $(".eachStory.active").index();
+        const maxCount = $(".eachStory").length;
+        if (activeElement !== maxCount - 1) {
+          changeStory(activeElement + 1);
+        }
+      };
+      
+      const changeStory = (index) => {
+        $(".eachStory").removeClass("active");
+        $(".eachStory").eq(index).addClass("active");
+      };
+      
+      function goToHomePage() {
+        // You can use JavaScript to redirect the user to the home page URL.
+        window.location.href = "index.html"; // Replace with your actual home page URL
+      }
+      
+      
+      
+      
+      

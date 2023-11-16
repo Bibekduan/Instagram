@@ -103,7 +103,7 @@ def tag_list(request,tag_slug):
 def like(request,post_id):
     user=request.user
     post=Post.objects.get(id=post_id)
-    current_likes=post.like
+    current_likes=post.like 
     liked=Likes.objects.filter(user=user,post=post,).count()
     if not liked:
         liked=Likes.objects.create(user=user,post=post)
